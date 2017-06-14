@@ -11,10 +11,10 @@
 ###Tasks
 
   Backend Tasks
-    [ ]Connect to the server
-    [ ]Routing
+    [X]Connect to the server
+    [X]Routing
       [ ]API
-      [ ]HTML
+      [X]HTML
     [ ]Expected AJAX Behavior
       [ ]GET
       [ ]POS

@@ -10,17 +10,39 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+//Starting Reservations
+var reservations=[
+  {
+    customerName: "Oscar the Grouch",
+    customerEmail: "Oscar@sesamest.com",
+    phoneNumber: "222-222-2222",
+    customerID: 1
+  },
+  {
+    customerName: "Big Bird",
+    customerEmail: "BigBird@sesamest.com",
+    phoneNumber: "444-444-4444",
+    customerID: 2 
+  },
+  {
+    customerName: "Ernie",
+    customerEmail: "Ernie@sesamest.com",
+    phoneNumber: "222-222-2222",
+    customerID: 3 
+  }
+]
+
 // Routes
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "home.html"));
+  res.sendFile(path.join(__dirname, "views/home.html"));
 });
 
 app.get("/tables", function(req, res) {
-  res.sendFile(path.join(__dirname, "tables.html"));
+  res.sendFile(path.join(__dirname, "views/tables.html"));
 });
 
 app.get("/reserve", function(req, res) {
-  res.sendFile(path.join(__dirname, "reserve.html"));
+  res.sendFile(path.join(__dirname, "views/reserve.html"));
 });
 
 app.post("/reserve", function(req, res) {
@@ -31,8 +53,7 @@ app.post("/reserve", function(req, res) {
 });
 
 app.get("/api/tables", function(req, res) {
-  console.log(res.json());
-  //build this out more
+  return res.json(reservations);
 });
 
 app.get("/api/waitlist", function(req, res) {

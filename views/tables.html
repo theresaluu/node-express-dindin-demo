@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet"
+       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+       integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+       crossorigin="anonymous">
+    <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+      <!--Import jQuery before materialize.js-->
+      <div class="container-fluid">
+        <div class="jumbotron">
+          <h1 class="text-center">
+            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+            Hot Restaurant
+          </h1>
+          <hr></hr>
+          <h3 class="text-center">
+            Current Reservations and Waiting List
+          </h3>
+          <p class="text-center">
+            <a class="btn btn-danger btn-lg" href="/reserve" role="button">
+              <span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
+              Make Reservations
+            </a>
+            <a class="btn btn-default btn-lg" href="/" role="button">
+              <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+            </a>
+          </p>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Current Reservations</h3>
+          </div>
+          <div class="panel-body" id="confirmed-rez-section">
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Waiting List</h3>
+          </div>
+          <div class="panel-body" id="waitlist-section">
+          </div>
+        </div>
+        <p>Control Panel</p>
+        <p>
+          <a href="#">Clear Table </a>
+          |<a href="/api/tables"> API Table Link</a>
+          |<a href="/api/waitlist"> API Wait List</a>
+        </p>
+      </div>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+       integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+      </script>
+      <script type="text/javascript">
+        function showRezzies() {
+          var currentURL = window.location.origin;
+          $.ajax({
+            url: currentURL + "/api/tables",
+            method: "GET"
+          }).done(function(rezzies) {
+            console.log(rezzies);
+            for(var i = 0; i < rezzies.length; i++){
+              var indivRez = $("<div>");
+              var tableNum = i + 1;
+              indivRez.addClass("well").attr("id", "tableWell-" + tableNum);
+              $("#confirmed-rez-section").append(indivRez);
+              
+              $("#tableWell-" + tableNum ).append("<h4><span class='label label-primary'>" + tableNum + "</span> | " + rezzies[i].customerName + "</h4>");
+            }
+          });
+        }
+        showRezzies();
+      </script>
+    </body>
+  </html>
