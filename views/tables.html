@@ -46,7 +46,7 @@
           <div class="panel-heading">
             <h3 class="panel-title">Waiting List</h3>
           </div>
-          <div class="panel-body" id="waitlist-section">
+          <div class="panel-body" id="confirmed-wait-section">
           </div>
         </div>
         <p>Control Panel</p>
@@ -73,12 +73,30 @@
               var tableNum = i + 1;
               indivRez.addClass("well").attr("id", "tableWell-" + tableNum);
               $("#confirmed-rez-section").append(indivRez);
-              
+
               $("#tableWell-" + tableNum ).append("<h4><span class='label label-primary'>" + tableNum + "</span> | " + rezzies[i].customerName + "</h4>");
             }
           });
         }
+        function showWaities() {
+          var currentURL = window.location.origin;
+          $.ajax({
+            url: currentURL + "/api/waitlist",
+            method: "GET"
+          }).done(function(waities) {
+            console.log(waities);
+            for(var i = 0; i < waities.length; i++){
+              var indivRez = $("<div>");
+              var tableNum = i + 1;
+              indivRez.addClass("well").attr("id", "tableWell-waitlist-" + tableNum );
+              $("#confirmed-wait-section").append(indivRez);
+
+              $("#tableWell-waitlist-" + tableNum ).append("<h4><span class='label label-primary'>" + tableNum + "</span> | " + waities[i].customerName + "</h4>");
+            }
+          });
+        }
         showRezzies();
+        showWaities();
       </script>
     </body>
   </html>

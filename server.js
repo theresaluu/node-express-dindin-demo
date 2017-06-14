@@ -1,6 +1,8 @@
 var express = require ("express");
 var bodyParser = require("body-parser");
 var path = require("path");
+var reservations = require("./data/reservations");
+var waitlist = require("./data/waitlist");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -11,27 +13,6 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 //Starting Reservations
-var reservations=[
-  {
-    customerName: "Oscar the Grouch",
-    customerEmail: "Oscar@sesamest.com",
-    phoneNumber: "222-222-2222",
-    customerID: 1
-  },
-  {
-    customerName: "Big Bird",
-    customerEmail: "BigBird@sesamest.com",
-    phoneNumber: "444-444-4444",
-    customerID: 2 
-  },
-  {
-    customerName: "Ernie",
-    customerEmail: "Ernie@sesamest.com",
-    phoneNumber: "222-222-2222",
-    customerID: 3 
-  }
-]
-
 // Routes
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "views/home.html"));
@@ -57,8 +38,7 @@ app.get("/api/tables", function(req, res) {
 });
 
 app.get("/api/waitlist", function(req, res) {
-  console.log(res.json());
-  //build this out more
+  return res.json(waitlist);
 });
 
 app.listen(PORT, function() {
