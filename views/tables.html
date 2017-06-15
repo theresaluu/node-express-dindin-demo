@@ -51,7 +51,7 @@
         </div>
         <p>Control Panel</p>
         <p>
-          <a href="#">Clear Table </a>
+          <a href="#" id="clear">Clear Table </a>
           |<a href="/api/tables"> API Table Link</a>
           |<a href="/api/waitlist"> API Wait List</a>
         </p>
@@ -95,8 +95,19 @@
             }
           });
         }
+
+        function clearTable() {
+          var currentURL = window.location.origin;
+          $.ajax({url: currentURL + "/api/clear", method: "POST"});
+        }
+
         showRezzies();
         showWaities();
+
+        $("#clear").click(function() {
+          clearTable();
+          location.reload();
+        });
       </script>
     </body>
   </html>

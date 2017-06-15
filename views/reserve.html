@@ -26,16 +26,41 @@
             Current Reservations and Waiting List
           </h3>
           <p class="text-center">
-            <a class="btn btn-danger btn-lg" href="/reserve" role="button">
-              <span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
-              Make Reservations
+            <a class="btn btn-primary btn-lg" href="/tables" role="button">
+              <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+              View Tables
             </a>
             <a class="btn btn-default btn-lg" href="/" role="button">
               <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
             </a>
           </p>
         </div>
-        <p>Control Panel</p>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <b class="panel-title">Table Reservation</b>
+          </div>
+          <div class="panel-body" id="confirmed-wait-section">
+            <form>
+              <div class="form-group">
+                <label for="rez-name">Name</label>
+                <input type="text" class="form-control" id="rez-name">
+              </div>
+              <div class="form-group">
+                <label for="rez-phone">Phone</label>
+                <input type="text" class="form-control" id="rez-phone">
+              </div>
+              <div class="form-group">
+                <label for="rez-email">Email</label>
+                <input type="email" class="form-control" id="rez-email">
+              </div>
+              <div class="form-group">
+                <label for="rez-id">ID</label>
+                <input type="text" class="form-control" id="rez-id">
+              </div>
+              <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+            </form>
+          </div>
+        </div>
         <p>
           <a href="/api/tables"> API Table Link </a>
           |<a href="/api/waitlist"> API Wait List</a>
@@ -44,6 +69,34 @@
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+      </script>
+      <script type="text/javascript">
+        $("#submit").on("click", function(event) {
+          event.preventDefault();
+
+          var rezRequest = {
+            customerName: $("#rez-name").val().trim(),
+            phoneNumber: $("#rez-phone").val().trim(),
+            customerEmail: $("#rez-email").val().trim(),
+            customerID: $("#rez-id").val().trim()
+          };
+
+          console.log(rezRequest);
+
+          $.post("/api/tables", rezRequest, function(response){
+            if(response) {
+              alert("holllllaaaa, see you at dinner");
+            } else {
+              alert("Waitlisted- bummer but we are around the corner from in-n-out.  You good!");
+            }
+            $("#rez-name").val("");
+            $("#rez-phone").val("");
+            $("#rez-email").val("");
+            $("#rez-id").val("");
+
+          });
+
+        });
       </script>
     </body>
   </html>

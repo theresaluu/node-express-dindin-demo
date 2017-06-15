@@ -26,11 +26,15 @@ app.get("/reserve", function(req, res) {
   res.sendFile(path.join(__dirname, "views/reserve.html"));
 });
 
-app.post("/reserve", function(req, res) {
-  var newRez = req.body;
-  console.log(newRez);
-  res.json(newRez);
-  //build this out more
+app.post("/api/tables", function(req, res) {
+  if (reservations.length < 5){
+    reservations.push(req.body);
+    res.json(true);
+  }
+  else{
+    waitlist.push(req.body);
+    res.json(false);
+  };
 });
 
 app.get("/api/tables", function(req, res) {
@@ -39,6 +43,11 @@ app.get("/api/tables", function(req, res) {
 
 app.get("/api/waitlist", function(req, res) {
   return res.json(waitlist);
+});
+
+app.post("/api/clear", function() {
+  waitlist = [];
+  reservations = [];
 });
 
 app.listen(PORT, function() {

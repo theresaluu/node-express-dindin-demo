@@ -16,8 +16,8 @@
       [ ]API
       [X]HTML
     [ ]Expected AJAX Behavior
-      [ ]GET
-      [ ]POS
+      [X]GET
+      [ ]POST
 
   Frontend Tasks
     [ ]jQuery to make a post
