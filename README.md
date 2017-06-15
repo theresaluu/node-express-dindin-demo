@@ -1,6 +1,7 @@
-#13.3 Hot Restaurant
+# 13.3 Hot Restaurant
 
-###Flow of App
+### Flow of App
+
 - Homepage
   View Tables (/tables)
   Make Reservations (/reserve)
@@ -8,26 +9,40 @@
     Table Link (/api/tables):Max Reservation 5
     Wait List (api/waitlist)
 
-###Tasks
+### Tasks
 
   Backend Tasks
-    [X]Connect to the server
-    [X]Routing
-      [ ]API
-      [X]HTML
-    [ ]Expected AJAX Behavior
-      [X]GET
-      [ ]POST
 
-  Frontend Tasks
-    [ ]jQuery to make a post
-    [ ]Capture form input with jQuery to make reservations
-      [ ]customerName
-      [ ]customerEmail
-      [ ]phoneNumber
-      [ ]customerID
+-    [X]Connect to the server
 
-  Misc
-    [ ].gitignore
-    [ ]package.json
-  
+-    [X]Routing
+
+-      [X]API
+
+-      [X]HTML
+
+-    [X]Expected AJAX Behavior
+
+-      [X]GET
+
+-      [X]POST
+
+-  Frontend Tasks
+
+-    [X]jQuery to make a post
+
+-    [X]Capture form input with jQuery to make reservations
+
+-      [X ]customerName
+
+-      [X]customerEmail
+
+-      [X]phoneNumber
+
+-      [X]customerID
+
+-  Misc
+
+-    [X].gitignore
+
+-    [X]package.json
